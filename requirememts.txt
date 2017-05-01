@@ -1,1 +1,6 @@
 tornado (1.2.1)
+TMdata---->channel=7 3.3v
+RPIdata--->channel=12 3.3v
+Raindata-->channel=16 3v~5v
+MQ-2data-->channel=18 0~5v
+pcf8591--->channel SDA(3) SCL(5) 5v
