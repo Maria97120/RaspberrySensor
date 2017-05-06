@@ -30,8 +30,10 @@ if __name__ == '__main__':
         "MQ-2"   : handlers.handlers[5]
     }
 
-    parameters_list = [parameter for parameter in range(1, len(sys.argv))]
-    handlers_list   = [parameter for parameter in range(len(parameters_list)) if parameter in parameters_dict]
+    parameters_list = [parameter for parameter in sys.argv[1:] if parameter in parameters_dict]
+    handlers_list = []
+    for parameter in parameters_list:
+        handlers_list.append(parameters_dict[parameter])
 
     if not handlers_list:
         handlers_list = handlers.handlers
