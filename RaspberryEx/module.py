@@ -8,6 +8,7 @@ import TMSensorData
 import RainSensorData
 import RPISensorData
 import MQSensorData
+import Database
 
 class IndexHandler(tornado.web.RequestHandler):
     def get(self):
@@ -57,3 +58,9 @@ class MQHandler(tornado.web.RequestHandler):
             #self.write("no MQ")
         json_MQvalue = json.dumps(str(MQ))
         self.write(json_MQvalue)
+
+class DBHandler(tornado.web.RedirectHandler):
+    '''Database'''
+    def get(self):
+        database = Database.Database()
+        self.write(database.use_database())
