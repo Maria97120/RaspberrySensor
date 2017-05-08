@@ -27,7 +27,8 @@ if __name__ == '__main__':
         "TM"     : handlers.handlers[2],
         "Rain"   : handlers.handlers[3],
         "RPI"    : handlers.handlers[4],
-        "MQ-2"   : handlers.handlers[5]
+        "MQ-2"   : handlers.handlers[5],
+        "DB"     : handlers.handlers[6]
     }
 
     parameters_list = [parameter for parameter in sys.argv[1:] if parameter in parameters_dict]
