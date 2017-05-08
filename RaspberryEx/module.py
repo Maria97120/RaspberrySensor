@@ -59,7 +59,7 @@ class MQHandler(tornado.web.RequestHandler):
         json_MQvalue = json.dumps(str(MQ))
         self.write(json_MQvalue)
 
-class DBHandler(tornado.web.RedirectHandler):
+class DBHandler(tornado.web.RequestHandler):
     '''Database'''
     def get(self):
         database = Database.Database()

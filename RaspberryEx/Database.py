@@ -1,5 +1,5 @@
 import redisco
-from redisco.contianers import Hash
+from redisco.containers import Hash
 
 import urllib2
 import time
@@ -12,12 +12,11 @@ class Database(object):
         data = json.loads(urllib2.urlopen(url).read())
         return data
     def use_database(self):
-        #values = self.get_url_data(url)
-        values = [10,11]
+        values = self.get_url_data("http://192.168.0.108:8000/TM")
         key = time.strftime('%Y-%m-%d %H:%M:%s',time.localtime(time.time()))
         TM_hash = Hash(key)
         TM_hash.hmset(
-            {'temperature' : str(values[0]), 'humidity' : str(values[1])}
+	    {'temperature' : str(values[0]), 'humidity' : str(values[1])}
         )
         return TM_hash.hgetall()
 
