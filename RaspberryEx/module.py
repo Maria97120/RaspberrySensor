@@ -4,7 +4,10 @@ import tornado.web
 import json
 import time
 
-
+import TMSensorData
+import RainSensorData
+import RPISensorData
+import MQSensorData
 import Database
 
 class IndexHandler(tornado.web.RequestHandler):
@@ -16,8 +19,7 @@ class test(tornado.web.RequestHandler):
         self.write("hello test")
 
 class TMHandler(tornado.web.RequestHandler):
-    '''temperature and moistrue'''
-    import TMSensorData
+    '''temperature and moistrue'''   
     def get(self):
         TMvalue = TMSensorData.TMData().TMvalue()
         #self.write("当前温度:" + str(TMvalue[0]) + "\n\r" + "当前湿度:" + str(TMvalue[1]))
@@ -26,7 +28,6 @@ class TMHandler(tornado.web.RequestHandler):
 
 class RainHandler(tornado.web.RequestHandler):
     '''Raindrops module MH-RD '''
-    import RainSensorData
     def get(self):
         rain=RainSensorData.RainData().Rainvalue()
         #if rain[0]==1:
@@ -39,7 +40,6 @@ class RainHandler(tornado.web.RequestHandler):
 
 class RPIHandler(tornado.web.RequestHandler):
     ''' �流量 '''
-    import RPISensorData
     def get(self):
         people=RPISensorData.RPIData().RPIvalue()
         people=people-2
@@ -50,7 +50,6 @@ class RPIHandler(tornado.web.RequestHandler):
 
 class MQHandler(tornado.web.RequestHandler):
     '''MQ-2'''
-    import MQSensorData
     def get(self):
         MQ=MQSensorData.MQData().MQvalue()
         #if MQ==1:
