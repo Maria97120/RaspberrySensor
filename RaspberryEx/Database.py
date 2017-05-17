@@ -7,7 +7,7 @@ import json
 
 class Weather(object):
     def __init__(self):
-        self.__weather = [0,0,0,0]
+        self.__weather = []
         self.__url_dict = {
             "TM"   : "http://192.168.0.108:8000/TM",
             "Rain" : "http://192.168.0.108:8000/Rain",
@@ -17,7 +17,7 @@ class Weather(object):
     def set_weather(self):
         TM_url = self.__url_dict["TM"]
         TMData = [-30,0]
-        while (TMData[0] < -20 or TMData[0] > 35):
+        while (int(TMData[0]) < -20 or int(TMData[0]) > 35):
             TMData = json.loads(urllib2.urlopen(TM_url).read())
         self.__weather[0] = TMData[0]
         self.__weather[1] = TMData[1]

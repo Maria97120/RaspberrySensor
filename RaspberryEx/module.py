@@ -35,7 +35,7 @@ class RainHandler(tornado.web.RequestHandler):
         #else:
             #self.write("no raining "+"\n\r"+str(rain[1]))
         #json_Rainvalue = json.dumps(str(rain[1]))
-        self.write(rain[1])
+        self.write(str(rain[1]))
 
 
 class RPIHandler(tornado.web.RequestHandler):
@@ -57,7 +57,7 @@ class MQHandler(tornado.web.RequestHandler):
         #else:
             #self.write("no MQ")
         #json_MQvalue = json.dumps(str(MQ))
-        self.write(MQ)
+        self.write(str(MQ))
 
 class DBHandler(tornado.web.RequestHandler):
     '''Database'''
