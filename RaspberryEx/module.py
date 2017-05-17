@@ -63,4 +63,6 @@ class DBHandler(tornado.web.RequestHandler):
     '''Database'''
     def get(self):
         database = Database.Database()
-        self.write(database.use_database())
+	while True:
+            database.use_database()
+	    time.sleep(3600)
