@@ -39,18 +39,16 @@ class Database(object):
         redisco.connection_setup(host = "localhost", port = 6379, db = 0)
 
     def use_database(self):
-	while(1):
-            weather_data = Weather().get_weather()
-            key = time.strftime('%Y-%m-%d %H:%M',time.localtime(time.time()))
-            weather_hash = Hash(key)
-            weather_hash.hmset(
-                { "temperature" : weather_data[0],
-                  "humidity"    : weather_data[1],
-                  "rain"        : weather_data[2],
-                  "mq"          : weather_data[3]
-                }
-            )
-            return weather_hash.hgetall()
-	    time.sleep(60)
+        weather_data = Weather().get_weather()
+        key = time.strftime('%Y-%m-%d %H:%M',time.localtime(time.time()))
+        weather_hash = Hash(key)
+        weather_hash.hmset(
+            { "temperature" : weather_data[0],
+              "humidity"    : weather_data[1],
+              "rain"        : weather_data[2],
+              "mq"          : weather_data[3]
+            }
+        )
+        return weather_hash.hgetall()
 
 
