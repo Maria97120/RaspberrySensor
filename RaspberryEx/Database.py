@@ -14,7 +14,7 @@ class Weather(object):
             "MQ"   : "http://192.168.0.108:8000/MQ-2"
         }
     
-    def get_weather(self):
+    def set_weather(self):
         TM_url = self.__url_dict["TM"]
         TMData = [-30,0]
         while (TMData[0] < -20 or TMData[0] > 35):
@@ -28,9 +28,8 @@ class Weather(object):
         mq_url = self.__url_dict["MQ"]
         self.__weather[3] = urllib2.urlopen(mq_url).read()
     
-    @property
-    def weather(self):
-        self.get_weather()
+    def get_weather(self):
+        self.set_weather()
         return self.__weather
 
 
@@ -40,7 +39,7 @@ class Database(object):
         redisco.connection_setup(host = "localhost", port = 6379, db = 0)
 
     def use_database(self):
-        weather_data = Weather.weather
+        weather_data = Weather().get_weather()
         key = time.strftime('%Y-%m-%d %H',time.localtime(time.time()))
         weather_hash = Hash(key)
         weather_hash.hmset(
