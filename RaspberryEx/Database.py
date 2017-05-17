@@ -7,7 +7,7 @@ import json
 
 class Weather(object):
     def __init__(self):
-        self.__weather = []
+        self.__weather = [0,0,0,0]
         self.__url_dict = {
             "TM"   : "http://192.168.0.108:8000/TM",
             "Rain" : "http://192.168.0.108:8000/Rain",
