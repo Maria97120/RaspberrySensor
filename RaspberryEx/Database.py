@@ -32,16 +32,26 @@ class Weather(object):
         self.set_weather()
         return self.__weather
 
+class Visitors(object):
+    def __init__(self):
+        self.__visitors = 0
+        self.__url = "http://192.168.0.108:8000/RPI"
+    
+    def set_visitors(self):
+        self.__visitors = urllib2.urlopen(self.__url).read()
 
+    def get_visitors(self):
+        self.set_visitors()
+        return self.__visitors
 
 class Database(object):
     def __init__(self):
         redisco.connection_setup(host = "localhost", port = 6379, db = 0)
 
-    def use_database(self):
+    def weather(self):
         weather_data = Weather().get_weather()
-        key = time.strftime('%Y-%m-%d %H:%M',time.localtime(time.time()))
-        weather_hash = Hash(key)
+        weather_key = 'weather.' + time.strftime('%Y-%m-%d %H',time.localtime(time.time()))
+        weather_hash = Hash(weather_key)
         weather_hash.hmset(
             { "temperature" : weather_data[0],
               "humidity"    : weather_data[1],
@@ -49,6 +59,20 @@ class Database(object):
               "mq"          : weather_data[3]
             }
         )
-        return weather_hash.hgetall()
+
+    def visitors(self, visitors = 0):
+        visitors_key  = 'rpi.' + time.strftime('%Y-%m-%d %H',time.localtime(time.time()))
+        visitors_hash = Hash(visitors_key)
+        visitors_hash.hset (visitors_key , visitors) 
+    
+    def run(self):
+        current_time = time.localtime(time.time())
+        visitors_perhor = 0
+        self.weather()
+        while time.localtime(time.time())[3] == current_time[3]:
+            visitors_persec = Visitors().get_visitors()
+            visitors_perhor = int(visitors_perhor) + int(visitors_persec)
+        self.visitors(str(visitors_perhor))
+
 
 

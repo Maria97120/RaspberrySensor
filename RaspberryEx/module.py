@@ -8,7 +8,7 @@ import TMSensorData
 import RainSensorData
 import RPISensorData
 import MQSensorData
-import Database
+from Database import Database
 
 class IndexHandler(tornado.web.RequestHandler):
     def get(self):
@@ -43,10 +43,10 @@ class RPIHandler(tornado.web.RequestHandler):
     def get(self):
         people=RPISensorData.RPIData().RPIvalue()
         people=people-2
-        time_key=time.strftime('%Y-%m-%d %H:%M:%S',time.localtime(time.time()))
-        people_dict = {time_key:str(people)}
-        json_RPIvalue = json.dumps(people_dict)
-        self.write(json_RPIvalue)
+        #time_key=time.strftime('%Y-%m-%d %H:%M:%S',time.localtime(time.time()))
+        #people_dict = {time_key:str(people)}
+        #json_RPIvalue = json.dumps(people_dict)
+        self.write(str(people))
 
 class MQHandler(tornado.web.RequestHandler):
     '''MQ-2'''
@@ -62,7 +62,6 @@ class MQHandler(tornado.web.RequestHandler):
 class DBHandler(tornado.web.RequestHandler):
     '''Database'''
     def get(self):
-        database = Database.Database()
-	while True:
-            database.use_database()
-	    time.sleep(3600)
+        database = Database()
+	    while True:
+            database.run()
