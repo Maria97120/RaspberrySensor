@@ -42,7 +42,7 @@ class RPIHandler(tornado.web.RequestHandler):
     ''' �流量 '''
     def get(self):
         people=RPISensorData.RPIData().RPIvalue()
-        people=people-2
+        #people=people-2
         #time_key=time.strftime('%Y-%m-%d %H:%M:%S',time.localtime(time.time()))
         #people_dict = {time_key:str(people)}
         #json_RPIvalue = json.dumps(people_dict)
@@ -63,5 +63,5 @@ class DBHandler(tornado.web.RequestHandler):
     '''Database'''
     def get(self):
         database = Database()
-	    while True:
+	while True:
             database.run()
