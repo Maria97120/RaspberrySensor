@@ -7,6 +7,7 @@ handlers = [
     (r'/TM', module.TMHandler),
     (r'/Rain',module.RainHandler),
     (r'/RPI',module.RPIHandler),
-    (r'/MQ-2',module.MQHandler)	
+    (r'/MQ-2',module.MQHandler),
+    (r'/DB',module.DBHandler)
 
 ]
