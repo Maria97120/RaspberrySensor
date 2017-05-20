@@ -5,24 +5,29 @@ import urllib2
 import time
 import json
 
-import urls
 
 class Weather(object):
     def __init__(self):
         self.__weather = [0,0,0,0]
+	self.__url_dict = {
+            "TM"   : "http://192.168.0.152:8000/TM",
+            "Rain" : "http://192.168.0.152:8000/Rain",
+            "MQ"   : "http://192.168.0.152:8000/MQ-2"
+        }
     
-    def set_weather(self):
-        TM_url = urls.urls["TM"]
+    def set_weatherd(self):
+        TM_url = self.__url_dict["TM"]
         TMData = [-30,0]
         while (int(TMData[0]) < -20 or int(TMData[0]) > 35):
             TMData = json.loads(urllib2.urlopen(TM_url).read())
         self.__weather[0] = TMData[0]
         self.__weather[1] = TMData[1]
 
-        rain_url = urls.urls["Rain"]
+        rain_url = self.__url_dict["Rain"]
         self.__weather[2] = urllib2.urlopen(rain_url).read()
+	#self.__weather[2] = '0'
 
-        mq_url = urls.urls["MQ"]
+        mq_url = self.__url_dict["MQ"]
         self.__weather[3] = urllib2.urlopen(mq_url).read()
     
     def get_weather(self):
@@ -32,10 +37,10 @@ class Weather(object):
 class Visitors(object):
     def __init__(self):
         self.__visitors = 0
+	self.__url = "http://192.168.0.152:8000/RPI"
     
     def set_visitors(self):
-	rpi_url = urls.urls["RPI"]
-        self.__visitors = urllib2.urlopen(rpi_url).read()
+        self.__visitors = urllib2.urlopen(self.__url).read()
 
     def get_visitors(self):
         self.set_visitors()
