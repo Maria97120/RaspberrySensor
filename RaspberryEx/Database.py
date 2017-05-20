@@ -64,7 +64,7 @@ class Database(object):
     def visitors(self, visitors, current_time):
         visitors_key  = 'rpi.' + time.strftime('%Y-%m-%d %H',current_time)
         visitors_hash = Hash(visitors_key)
-        visitors_hash.hset ("visitors_num" , visitors) 
+        visitors_hash.hset ("visitors flowrate" , visitors) 
     
     def run(self):
         current_time = time.localtime(time.time())
@@ -73,6 +73,7 @@ class Database(object):
         while time.localtime(time.time())[3] == current_time[3]:
             visitors_persec = Visitors().get_visitors()
             visitors_perhor = visitors_perhor + int(visitors_persec)
+	    time.sleep(2.5)
         self.visitors(str(visitors_perhor),current_time)
 
 
