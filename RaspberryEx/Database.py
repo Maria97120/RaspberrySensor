@@ -15,7 +15,7 @@ class Weather(object):
             "MQ"   : "http://192.168.0.152:8000/MQ-2"
         }
     
-    def set_weatherd(self):
+    def set_weather(self):
         TM_url = self.__url_dict["TM"]
         TMData = [-30,0]
         while (int(TMData[0]) < -20 or int(TMData[0]) > 35):
@@ -25,7 +25,6 @@ class Weather(object):
 
         rain_url = self.__url_dict["Rain"]
         self.__weather[2] = urllib2.urlopen(rain_url).read()
-	#self.__weather[2] = '0'
 
         mq_url = self.__url_dict["MQ"]
         self.__weather[3] = urllib2.urlopen(mq_url).read()
