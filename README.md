@@ -6,4 +6,5 @@
 pcf8591:AD模拟量转换     channel-->3(SDA)  channel-->5(SCL) 5v 
 
 
-docker运行命令: docker run -p 8000:8000 --device /dev/mem:/dev/mem --privileged name:tap /bin/bash
+docker运行命令: docker run -i -t -p 8000:8000 --device /dev/mem:/dev/mem --privileged name:tap /bin/bash
+
