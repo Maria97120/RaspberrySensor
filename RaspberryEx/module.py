@@ -42,7 +42,8 @@ class lineHandler(tornado.web.RequestHandler):
 			b.append(j)
 			k=k+1
 			j=j+1
-		self.render('line.html',tem0=a[0],tem1=a[1],tem2=a[2],tem3=a[3],tem4=a[4],tem5=a[5],tem6=a[6],tem7=a[7],tem8=a[8],tem9=a[9],tem10=a[10],tem11=a[11],tem12=a[12],tem13=a[13],tem14=a[14],tem15=a[15],tem16=a[16],tem17=a[17],tem18=a[18],tem19=a[19],tem20=a[20],tem21=a[21],tem22=a[22],tem23=a[23],hum0=b[0],hum1=b[1],hum2=b[2],hum3=b[3],hum4=b[4],hum5=b[5],hum6=b[6],hum7=b[7],hum8=b[8],hum9=b[9],hum10=b[10],hum11=b[11],hum12=b[12],hum13=b[13],hum14=b[14],hum15=b[15],hum16=b[16],hum17=b[17],hum18=b[18],hum19=b[19],hum20=b[20],hum21=b[21],hum22=b[22],hum23=b[23])
+		fog="has fog"
+		self.render('line.html',fog=fog,tem0=a[0],tem1=a[1],tem2=a[2],tem3=a[3],tem4=a[4],tem5=a[5],tem6=a[6],tem7=a[7],tem8=a[8],tem9=a[9],tem10=a[10],tem11=a[11],tem12=a[12],tem13=a[13],tem14=a[14],tem15=a[15],tem16=a[16],tem17=a[17],tem18=a[18],tem19=a[19],tem20=a[20],tem21=a[21],tem22=a[22],tem23=a[23],hum0=b[0],hum1=b[1],hum2=b[2],hum3=b[3],hum4=b[4],hum5=b[5],hum6=b[6],hum7=b[7],hum8=b[8],hum9=b[9],hum10=b[10],hum11=b[11],hum12=b[12],hum13=b[13],hum14=b[14],hum15=b[15],hum16=b[16],hum17=b[17],hum18=b[18],hum19=b[19],hum20=b[20],hum21=b[21],hum22=b[22],hum23=b[23])
 		
 class linepeopleHandler(tornado.web.RequestHandler):
 	def get(self):
