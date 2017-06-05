@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>温度/湿度</title>
+		<script src="{{static_url('js/Chart.js')}}"></script>
+    	<script src="{{static_url('js/excanvas.js')}}"></script>
+	</head>
+	<style>
+		#graph{
+			width: 45%;
+            margin:auto; 
+		}
+		#tem0, #tem1, #tem2, #tem3, #tem4, #tem5, #tem6,#tem7,#tem8,#tem9,#tem10,#tem11,#tem12,#tem13,#tem14,#tem15,#tem16,#tem17,#tem18,#tem19,#tem20,#tem21,#tem22,#tem23
+		{
+			display: none;
+		}
+		#hum0, #hum1, #hum2, #hum3, #hum4, #hum5, #hum6,#hum7,#hum8,#hum9,#hum10,#hum11,#hum12,#hum13,#hum14,#hum15,#hum16,#hum17,#hum18,#hum19,#hum20,#hum21,#hum22,#hum23
+		{
+			display: none;
+		}
+	</style>
+	<body>
+		<div id="graph">
+			<p >有无烟雾：<b id="fog">有</b></p>
+			<script type="text/javascript">
+				var p=document.getElementById("fog");
+				p.innerHTML = "无";
+			</script>
+			<p>温度/湿度</p>
+			<canvas id="canvas" height="450" width="600"></canvas>
+			<small>摄氏度,湿度/时间</small>
+			<br>
+			<small>注：灰色线条为温度，蓝色线条为湿度</small>
+		</div>
+		<div id="tem0">{{tem0}}</div>
+		<div id="tem1">{{tem1}}</div>
+		<div id="tem2">{{tem2}}</div>
+		<div id="tem3">{{tem3}}</div>
+		<div id="tem4">{{tem4}}</div>
+		<div id="tem5">{{tem5}}</div>
+		<div id="tem6">{{tem6}}</div>
+		<div id="tem7">{{tem7}}</div>
+		<div id="tem8">{{tem8}}</div>
+		<div id="tem9">{{tem9}}</div>
+		<div id="tem10">{{tem10}}</div>
+		<div id="tem11">{{tem11}}</div>
+		<div id="tem12">{{tem12}}</div>
+		<div id="tem13">{{tem13}}</div>
+		<div id="tem14">{{tem14}}</div>
+		<div id="tem15">{{tem15}}</div>
+		<div id="tem16">{{tem16}}</div>
+		<div id="tem17">{{tem17}}</div>
+		<div id="tem18">{{tem18}}</div>
+		<div id="tem19">{{tem19}}</div>
+		<div id="tem20">{{tem20}}</div>
+		<div id="tem21">{{tem21}}</div>
+		<div id="tem22">{{tem22}}</div>
+		<div id="tem23">{{tem23}}</div>
+		
+		<div id="hum0">{{hum0}}</div>
+		<div id="hum1">{{hum1}}</div>
+		<div id="hum2">{{hum2}}</div>
+		<div id="hum3">{{hum3}}</div>
+		<div id="hum4">{{hum4}}</div>
+		<div id="hum5">{{hum5}}</div>
+		<div id="hum6">{{hum6}}</div>
+		<div id="hum7">{{hum7}}</div>
+		<div id="hum8">{{hum8}}</div>
+		<div id="hum9">{{hum9}}</div>
+		<div id="hum10">{{hum10}}</div>
+		<div id="hum11">{{hum11}}</div>
+		<div id="hum12">{{hum12}}</div>
+		<div id="hum13">{{hum13}}</div>
+		<div id="hum14">{{hum14}}</div>
+		<div id="hum15">{{hum15}}</div>
+		<div id="hum16">{{hum16}}</div>
+		<div id="hum17">{{hum17}}</div>
+		<div id="hum18">{{hum18}}</div>
+		<div id="hum19">{{hum19}}</div>
+		<div id="hum20">{{hum20}}</div>
+		<div id="hum21">{{hum21}}</div>
+		<div id="hum22">{{hum22}}</div>
+		<div id="hum23">{{hum23}}</div>
+		<script>   
+			function value(data){
+				var a = document.getElementById(data).innerHTML;
+				return a;
+			}
+   			window.onload = function () {
+   				var ctx = document.getElementById("canvas").getContext("2d");
+   			};
+   			var lineChartData = {//17个数据
+   				labels: ["0:00","1:00","2:00","3:00","4:00","5:00","6:00","7:00", "8:00", "9:00", "10:00", "11:00", "12:00","13:00","14:00","15:00","16:00","17:00","18:00","19:00","20:00","21:00","22:00","23:00"],
+          	  	datasets: [{
+          	  		lable:"Temperature", //线条名称
+                	fillColor: "rgba(220,220,220,0.2)",//阴影部分颜色
+               		strokeColor: "rgba(220,220,220,1)", //线条颜色
+                	pointColor: "rgba(220,220,220,1)", //点颜色
+                	pointStrokeColor: "#FFFFFF", //点的包围圈颜色
+                	pointHighlightFill: "#339933",
+                	pointHighlightStroke: "rgba(220,220,220,1)",
+                	data : [value("tem0"),value("tem1"),value("tem2"),value("tem3"),value("tem4"),value("tem5"),value("tem6"),value("tem7"),value("tem8"),value("tem9"),value("tem10"),value("tem11"),value("tem12"),value("tem13"),value("tem14"),value("tem15"),value("tem16"),value("tem17"),value("tem18"),value("tem19"),value("tem20"),value("tem21"),value("tem22"),value("tem23")]
+            	},
+            	{
+          	  		lable:"Humidity", //线条名称
+                	fillColor: "rgba(220,220,220,0.2)",//阴影部分颜色
+               		strokeColor: "rgba(151,187,205,1)", //线条颜色
+                	pointColor: "rgba(151,187,205,1)", //点颜色
+                	pointStrokeColor: "#FFFFFF", //点的包围圈颜色
+                	pointHighlightFill: "#339933",
+                	pointHighlightStroke: "rgba(220,220,220,1)",
+                	data : [value("hum0"),value("hum1"),value("hum2"),value("hum3"),value("hum4"),value("hum5"),value("hum6"),value("hum7"),value("hum8"),value("hum9"),value("hum10"),value("hum11"),value("hum12"),value("hum13"),value("hum14"),value("hum15"),value("hum16"),value("hum17"),value("hum18"),value("hum19"),value("hum20"),value("hum21"),value("hum22"),value("hum23")]
+            	}]
+        	} 
+        	window.onload = function(){
+        		var ctx = document.getElementById("canvas").getContext("2d");
+        		window.myLine = new Chart(ctx).Line(lineChartData, {
+        			responsive: true,
+           	    	// 折线的曲线过渡，0是直线，默认0.4是曲线
+                	//bezierCurveTension: 0,
+            		bezierCurveTension: 0.4,
+            		bezierCurve: true, // 是否曲线
+            		scaleShowGridLines : true,// 是否显示网格
+            		scaleGridLineColor : "#CCCCCC",   // 网格颜色
+            		scaleGridLineWidth : 1,      // 网格线宽
+                	// 点击的小提示
+            		scaleLineColor : "#6666CC",    //轴色
+            		scaleLineWidth : 1, //轴线宽
+            		scaleSteps: 6, //几个单位的高
+            		scaleStepWidth: 5, //y轴坐标单位
+            		scaleStartValue: 0 //起始单位
+				});
+			} 
+    		</script>
+	</body>
+</html>

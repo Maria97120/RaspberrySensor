@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>降雨量</title>
+		<script src="{{static_url('js/Chart.js')}}"></script>
+    	<script src="{{static_url('js/excanvas.js')}}"></script>
+	</head>
+	<style>
+		#bar{
+			width: 45%;
+			margin:auto;
+		}
+		#Mon,#Tue,#Wed,#Thu,#Fri,#Sat,#Sun{
+			display:none;
+		}
+	</style>
+	<body>
+		<div id="bar">
+			<p>降雨等级</p>
+			<canvas id="canvas" height="450" width="600"></canvas>
+    		<br>
+    		<small>降雨等级/日期</small>
+    		<br>
+    		<small>注：降雨等级&nbsp;&nbsp;&nbsp;1-7&nbsp;&nbsp;&nbsp;为&nbsp;&nbsp;&nbsp;从弱到强</small>
+		</div>
+
+		<div id="Mon">{{Mon}}</div>
+		<div id="Tue">{{Tue}}</div>
+		<div id="Wed">{{Wed}}</div>
+		<div id="Thu">{{Thu}}</div>
+		<div id="Fri">{{Fri}}</div>
+		<div id="Sat">{{Sat}}</div>
+		<div id="Sun">{{Sun}}</div>
+		
+		<script>
+			function value(){
+				var arr = []
+				var a = document.getElementById("Mon").innerHTML;
+				a=parseInt(a);
+				arr.push(a);
+				var a = document.getElementById("Tue").innerHTML;
+				a=parseInt(a);
+				arr.push(a);
+				var a = document.getElementById("Wed").innerHTML;
+				a=parseInt(a);
+				arr.push(a);
+				var a = document.getElementById("Thu").innerHTML;
+                                a=parseInt(a);
+                                arr.push(a);
+				var a = document.getElementById("Fri").innerHTML;
+                                a=parseInt(a);
+                                arr.push(a);
+				var a = document.getElementById("Sat").innerHTML;
+                                a=parseInt(a);
+                                arr.push(a);
+				var a = document.getElementById("Sun").innerHTML;
+                                a=parseInt(a);
+                                arr.push(a);
+				return arr;
+			}
+			window.onload = function() {
+				var ctx = document.getElementById("canvas").getContext("2d");
+	        };
+            var barChartData = {
+             	labels : ["5-1","5-2","5-3","5-4","5-5","5-6","5-7"],
+             	datasets : [{
+             		fillColor : "rgba(151,187,205,0.5)",
+					strokeColor : "rgba(151,187,205,0.8)",
+					highlightFill : "rgba(151,187,205,0.75)",
+					highlightStroke : "rgba(151,187,205,1)",
+					data : value()
+				}]
+             }
+            window.onload = function(){
+            	var ctx = document.getElementById("canvas").getContext("2d");
+            	window.myBar = new Chart(ctx).Bar(barChartData, {
+            		responsive : true,
+        			scaleStepWidth : 10, //y轴每个刻度的宽度
+        			scaleLineColor : "rgba(0,0,0,.1)",// x轴y轴的颜色
+        			scaleLineWidth : 1,//轴线宽  
+        			scaleShowLabels : true,// 是否显示y轴的标签
+        			scaleShowGridLines : true,// 是否显示网格线
+        			scaleGridLineColor : "rgba(0,0,0,.05)",    // 网格线的颜色
+        			scaleGridLineWidth : 1, // 网格线的线宽
+        			barStrokeWidth : 2,   // 柱边线宽
+        			showTooltips: true, // 是否显示提示
+					});
+			}
+			</script>
+	</body>
+</html>
