@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>人流量</title>
+		<script src="{{static_url('js/Chart.js')}}"></script>
+    	        <script src="{{static_url('js/excanvas.js')}}"></script>
+	</head>
+	<style>
+		#p{
+			width: 45%;
+            margin: auto;
+		}
+		#peo0,#peo1,#peo2,#peo3,#peo4,#peo5,#peo6,#peo7,#peo8,#peo9,#peo10,#peo11,#peo12,#peo13,#peo14,#peo15,#peo16,#peo17,#peo18,#peo19,#peo20,#peo21,#peo22,#peo23{
+               display:none;
+		}
+	</style>
+	<body>
+		<div id="p">
+			<p >当前人流量：<b id="people">1111</b></p>
+			<script type="text/javascript">
+				var p=document.getElementById("people");
+				p.innerHTML = "123456";
+			</script>
+			<canvas id="canvas" height="450" width="600"></canvas>
+			<small>人流量/时间</small>
+			<br>
+		</div>
+		
+		<div id="peo0">{{peo0}}</div>
+		<div id="peo1">{{peo1}}</div>
+		<div id="peo2">{{peo2}}</div>
+		<div id="peo3">{{peo3}}</div>
+                <div id="peo4">{{peo4}}</div>
+		<div id="peo5">{{peo5}}</div>
+                <div id="peo6">{{peo6}}</div>
+                <div id="peo7">{{peo7}}</div>
+                <div id="peo8">{{peo8}}</div>
+		<div id="peo9">{{peo9}}</div>
+                <div id="peo10">{{peo10}}</div>
+                <div id="peo11">{{peo11}}</div>
+                <div id="peo12">{{peo12}}</div>
+                <div id="peo13">{{peo13}}</div>
+                <div id="peo14">{{peo14}}</div>
+                <div id="peo15">{{peo15}}</div>
+                <div id="peo16">{{peo16}}</div>
+		<div id="peo17">{{peo17}}</div>
+		<div id="peo18">{{peo18}}</div>
+		<div id="peo19">{{peo19}}</div>
+                <div id="peo20">{{peo20}}</div>
+		<div id="peo21">{{peo21}}</div>
+                <div id="peo22">{{peo22}}</div>
+                <div id="peo23">{{peo23}}</div>
+        
+		<script>
+			function value(data){
+			var a = document.getElementById(data).innerHTML;
+			return a
+			}	   
+   			window.onload = function () {
+   				var ctx = document.getElementById("canvas").getContext("2d");
+   			};
+   			var lineChartData = {//17个数据
+   				labels: ["0.00","1.00","2.00","3.00","4.00","5,00","6:00","7:00", "8:00", "9:00", "10:00", "11:00", "12:00","13:00","14:00","15:00","16:00","17:00","18:00","19:00","20:00","21:00","22:00","23.00"],
+          	  	datasets: [{
+          	  		lable:"Humidity", //线条名称
+                	fillColor: "rgba(220,220,220,0.2)",//阴影部分颜色
+               		strokeColor: "rgba(151,187,205,1)", //线条颜色
+                	pointColor: "rgba(151,187,205,1)", //点颜色
+                	pointStrokeColor: "#FFFFFF", //点的包围圈颜色
+                	pointHighlightFill: "#339933",
+                	pointHighlightStroke: "rgba(220,220,220,1)",
+                	data : [value("peo0"),value("peo1"),value("peo2"),value("peo3"),value("peo4"),value("peo5"),value("peo6"),value("peo7"),value("peo8"),value("peo9"),value("peo10"),value("peo11"),value("peo12"),value("peo13"),value("peo14"),value("peo15"),value("peo16"),value("peo17"),value("peo18"),value("peo19"),value("peo20"),value("peo21"),value("peo22"),value("peo23")]
+            	}]
+        	} 
+        	window.onload = function(){
+        		var ctx = document.getElementById("canvas").getContext("2d");
+        		window.myLine = new Chart(ctx).Line(lineChartData, {
+        			responsive: true,
+           	    	// 折线的曲线过渡，0是直线，默认0.4是曲线
+                	//bezierCurveTension: 0,
+            		bezierCurveTension: 0.4,
+            		bezierCurve: true, // 是否曲线
+            		scaleShowGridLines : true,// 是否显示网格
+            		scaleGridLineColor : "#CCCCCC",   // 网格颜色
+            		scaleGridLineWidth : 1,      // 网格线宽-
+                	// 点击的小提示
+            		scaleLineColor : "#6666CC",    //轴色
+            		scaleLineWidth : 1, //轴线宽
+            		scaleSteps: 6, //几个单位的高
+            		scaleStepWidth: 5, //y轴坐标单位
+            		scaleStartValue: 0 //起始单位
+				});
+			} 
+    		</script>
+	</body>
+</html>
