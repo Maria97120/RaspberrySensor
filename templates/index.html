@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+    	<title>index</title>
+    	<link rel="stylesheet" type="text/css" href="css/pc.css" media="screen">
+    	<link rel="stylesheet" type="text/css" href="css/phone.css" media="screen and (min-width:600px) and (max-width:979px)">
+    	<script src="{{static_url('js/Chart.js')}}"></script>
+    	<script src="{{static_url('js/excanvas.js')}}"></script>
+    	<style type="text/css">
+    	    body{
+    	    	background-image: url(../static/img/bg_body.jpg);
+    	    }
+    	    
+			#item{
+				height: 120px;
+				top: 500px;
+				left: 500px;
+			}
+			
+			#item ul{
+				list-style-type: none;
+				padding-left: 400px;
+				padding-top: 300px;
+			}
+			
+			#item li{
+				color: white;
+				margin-bottom: 30px;
+				font-size: 35px;
+			}
+			
+			#item li a:link,a:visited{
+				
+				width: 500px;
+				display: block;
+				color: black;
+				text-decoration: none;
+				text-align: center;
+				padding: 10px;
+			}
+
+			#item a:hover{
+				background-color: #CCCCFF;
+				text-decoration: none;
+			}
+    	</style>
+	</head>
+
+	<body>
+		<div id="container">
+			<nav id="item">
+				<ul >
+					<li><a target="_blank" href="line.html">温 度 / 湿 度 / 烟 雾</a></li>
+					<li><a target="_blank" href="bar.html">降 雨 等 级</a></li>
+					<li><a target="_blank" href="line_people.html">人 流 量</a></li>
+				</ul>
+			</nav>
+        	<br><br>
+		</div>
+	</body>
+</html>
+
+            	

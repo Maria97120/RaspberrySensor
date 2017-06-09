@@ -18,5 +18,7 @@ class RPIData():
                                break;
                                # print time.strftime('%Y-%m-%d %H:%M:%S',time.localtime(time.time()))+' Not anybody!'
                         #time.sleep(2.5)
+		if i >= 4:
+		    i = i - 2
                 return i
 
