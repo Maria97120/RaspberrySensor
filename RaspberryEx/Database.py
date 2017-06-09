@@ -27,7 +27,7 @@ class Weather(object):
         self.__weather[2] = urllib2.urlopen(rain_url).read()
 
         mq_url = self.__url_dict["MQ"]
-        self.__weather[3] = urllib2.urlopen(mq_url).read()
+        #self.__weather[3] = urllib2.urlopen(mq_url).read()
     
     def get_weather(self):
         self.set_weather()
