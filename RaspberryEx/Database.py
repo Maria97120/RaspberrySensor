@@ -10,9 +10,9 @@ class Weather(object):
     def __init__(self):
         self.__weather = [0,0,0,0]
 	self.__url_dict = {
-            "TM"   : "http://192.168.0.152:8000/TM",
-            "Rain" : "http://192.168.0.152:8000/Rain",
-            "MQ"   : "http://192.168.0.152:8000/MQ-2"
+            "TM"   : "http://192.168.0.128:8000/TM",
+            "Rain" : "http://192.168.0.128:8000/Rain",
+            "MQ"   : "http://192.168.0.128:8000/MQ-2"
         }
     
     def set_weather(self):
@@ -36,7 +36,7 @@ class Weather(object):
 class Visitors(object):
     def __init__(self):
         self.__visitors = 0
-	self.__url = "http://192.168.0.152:8000/RPI"
+	self.__url = "http://192.168.0.128:8000/RPI"
     
     def set_visitors(self):
         self.__visitors = urllib2.urlopen(self.__url).read()
@@ -46,8 +46,8 @@ class Visitors(object):
         return self.__visitors
 
 class Database(object):
-    def __init__(self):
-        redisco.connection_setup(host = "localhost", port = 6379, db = 0)
+    def __init__(self, h="localhost", p=6379, d=0):
+        redisco.connection_setup(host = h, port = p, db = d)
 
     def weather(self, current_time):
         weather_data = Weather().get_weather()
@@ -76,5 +76,10 @@ class Database(object):
 	    time.sleep(2.5)
         self.visitors(str(visitors_perhor),current_time)
 
-
+    def get_data(self, key, field):
+	if (Hash(key).hexists(field) == False):
+	    return False
+	else:
+	    return Hash(key).hget(field)
+	
 
