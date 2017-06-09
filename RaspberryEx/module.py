@@ -16,7 +16,10 @@ class IndexHandler(tornado.web.RequestHandler):
 
 class barHandler(tornado.web.RequestHandler):
 	def get(self):
-		mon = 3
+		db = Database()
+		current_time = time.strftime('%Y-%m-%d %H',time.localtime(time.time()))
+		mon = int (db.get_data("weather." + current_time, "rain"))
+		#mon = 3
 		tue = 4
 		wed = 3
 		thu = 4
