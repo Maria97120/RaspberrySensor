@@ -10,9 +10,9 @@ class Weather(object):
     def __init__(self):
         self.__weather = [0,0,0,0]
 	self.__url_dict = {
-            "TM"   : "http://192.168.0.128:8000/TM",
-            "Rain" : "http://192.168.0.128:8000/Rain",
-            "MQ"   : "http://192.168.0.128:8000/MQ-2"
+            "TM"   : "http://192.168.0.129:8000/TM",
+            "Rain" : "http://192.168.0.129:8000/Rain",
+            "MQ"   : "http://192.168.0.129:8000/MQ-2"
         }
     
     def set_weather(self):
@@ -36,7 +36,7 @@ class Weather(object):
 class Visitors(object):
     def __init__(self):
         self.__visitors = 0
-	self.__url = "http://192.168.0.128:8000/RPI"
+	self.__url = "http://192.168.0.129:8000/RPI"
     
     def set_visitors(self):
         self.__visitors = urllib2.urlopen(self.__url).read()
